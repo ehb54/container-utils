@@ -230,7 +230,7 @@ if ( $run ) {
             $v->containers = explode( "\n", trim( run_cmd( $cmd ) ) );
         }
 
-        # commit the image
+        # commit the images
         foreach ( $v->containers as $v2 ) {
             echoline('-');
             echo "$v2\n";
@@ -248,6 +248,12 @@ if ( $run ) {
                 echo "removing backup image $v2:$tag\n";
                 echo run_cmd( $cmd );
             }
+        }
+
+        # rsync to each syncto server
+        foreach ( $json->syncsto as $v2 ) {
+            $cmd = "ssh $v->user@$v->fqdn 'rsync -av $v->dir/ $v2->user@$v2->fqdn:$v2->dir'";
+            echo run_cmd( $cmd );            
         }
     }
 }
