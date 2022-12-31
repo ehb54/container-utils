@@ -1,0 +1,27 @@
+{
+    "syncsto" :
+    [
+        {
+            "name" : "arbitrary_name"
+            ,"fqdn" : "fqdn_or_ip_of_backup_server"
+            ,"user" : "user_name_for_login"
+            ,"dir"  : "full_path_to_store_images"
+        }
+    ]
+        
+    ,"servers" :
+    [
+        {
+            "name"        : "abritrary_name"
+            ,"fqdn"       : "fqdn_or_ip_of_server_running_containers"
+            ,"user"       : "user_name_for_login"
+            ,"type"       : "docker"   # can also be podman
+# dir required for storing images
+            ,"dir"        : "full_path_to_store_images"
+# optionally define containers for explicit list, o.w. containers will be discovered from running containers
+            ,"containers" : [ "container1", "container2" ]
+# optionally define containers to exclude
+#            ,"exclude"   : [ "exclude_container_name", "etc" ]
+        }
+    ]
+}
